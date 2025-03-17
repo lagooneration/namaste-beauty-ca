@@ -1,4 +1,4 @@
-import { Content } from "@prismicio/client";
+import { Content, isFilled } from "@prismicio/client";
 import {
   PrismicRichText,
   PrismicText,
@@ -10,7 +10,8 @@ import { Bounded } from "@/components/Bounded";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
-import { ParallaxImage } from "./ParallaxImage";
+import { ParallaxImage } from "@/slices/TextAndImage/ParallaxImage";
+import { Addon } from "@/slices/TextAndImage/Addon";
 
 declare module "react" {
   interface CSSProperties {
@@ -28,6 +29,11 @@ export type TextAndImageProps = SliceComponentProps<Content.TextAndImageSlice>;
  */
 const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
   const theme = slice.primary.theme;
+  
+
+
+
+
   return (
     <Bounded
       data-slice-type={slice.slice_type}
@@ -43,7 +49,7 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
         <div
           className={clsx(
             "flex flex-col items-center gap-8 text-center md:items-start md:text-left",
-            slice.variation === "imageOnLeft" && "md:order-2"
+            slice.variation === "imageOnLeft" && "md:order-2 text-brand-purple"
           )}
         >
           <SlideIn>
@@ -58,6 +64,15 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
               {slice.primary.body}
             </div>
           </SlideIn>
+          <SlideIn>
+          {slice.primary.options.map(
+          ({ services }) =>
+            isFilled.contentRelationship(services) && (
+              <Addon key={services.id} id={services.id} />
+            )
+        )}
+          </SlideIn>
+          
           <SlideIn>
             <ButtonLink
               field={slice.primary.button}

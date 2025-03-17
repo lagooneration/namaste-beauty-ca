@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "video_block": {
+              "type": "SharedSlice"
+            },
+            "offer_grid": {
+              "type": "SharedSlice"
+            },
             "service_grid": {
               "type": "SharedSlice"
             },

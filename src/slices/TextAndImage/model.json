@@ -146,6 +146,26 @@
               "Light Pink"
             ]
           }
+        },
+        "options": {
+          "type": "Group",
+          "config": {
+            "label": "Options",
+            "repeat": true,
+            "fields": {
+              "services": {
+                "type": "Link",
+                "config": {
+                  "label": "Services",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "service"
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "items": {}

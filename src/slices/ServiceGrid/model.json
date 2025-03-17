@@ -40,6 +40,26 @@
               "service"
             ]
           }
+        },
+        "list": {
+          "type": "Group",
+          "config": {
+            "label": "List",
+            "repeat": true,
+            "fields": {
+              "services": {
+                "type": "Link",
+                "config": {
+                  "label": "Services",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "service"
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "items": {}

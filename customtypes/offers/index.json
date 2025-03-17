@@ -1,0 +1,47 @@
+{
+  "format": "custom",
+  "id": "offers",
+  "label": "Offers",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": ""
+        }
+      },
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "photo_background": {
+        "type": "Image",
+        "config": {
+          "label": "Photo Background",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "photo_foreground": {
+        "type": "Image",
+        "config": {
+          "label": "Photo Foreground",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "price": {
+        "type": "Number",
+        "config": {
+          "label": "Price (cents)",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

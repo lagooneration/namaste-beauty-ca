@@ -5,6 +5,8 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | VideoBlockSlice
+  | OfferGridSlice
   | ServiceGridSlice
   | TextAndImageSlice
   | HeroSlice;
@@ -71,6 +73,67 @@ export type HomepageDocument<Lang extends string = string> =
     "homepage",
     Lang
   >;
+
+/**
+ * Content for Offers documents
+ */
+interface OffersDocumentData {
+  /**
+   * Name field in *Offers*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: offers.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Photo Background field in *Offers*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: offers.photo_background
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  photo_background: prismic.ImageField<never>;
+
+  /**
+   * Photo Foreground field in *Offers*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: offers.photo_foreground
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  photo_foreground: prismic.ImageField<never>;
+
+  /**
+   * Price (cents) field in *Offers*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: offers.price
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  price: prismic.NumberField;
+}
+
+/**
+ * Offers document from Prismic
+ *
+ * - **API ID**: `offers`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type OffersDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<OffersDocumentData>, "offers", Lang>;
 
 /**
  * Content for Service documents
@@ -208,6 +271,7 @@ export type SettingsDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | HomepageDocument
+  | OffersDocument
   | ServiceDocument
   | SettingsDocument;
 
@@ -274,6 +338,66 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *OfferGrid → Default → Primary*
+ */
+export interface OfferGridSliceDefaultPrimary {
+  /**
+   * Heading field in *OfferGrid → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: offer_grid.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
+ * Default variation for OfferGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type OfferGridSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<OfferGridSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *OfferGrid*
+ */
+type OfferGridSliceVariation = OfferGridSliceDefault;
+
+/**
+ * OfferGrid Shared Slice
+ *
+ * - **API ID**: `offer_grid`
+ * - **Description**: OfferGrid
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type OfferGridSlice = prismic.SharedSlice<
+  "offer_grid",
+  OfferGridSliceVariation
+>;
+
+/**
+ * Item in *ServiceGrid → Default → Primary → List*
+ */
+export interface ServiceGridSliceDefaultPrimaryListItem {
+  /**
+   * Services field in *ServiceGrid → Default → Primary → List*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service_grid.default.primary.list[].services
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  services: prismic.ContentRelationshipField<"service">;
+}
+
+/**
  * Primary content in *ServiceGrid → Default → Primary*
  */
 export interface ServiceGridSliceDefaultPrimary {
@@ -306,6 +430,16 @@ export interface ServiceGridSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   services: prismic.ContentRelationshipField<"service">;
+
+  /**
+   * List field in *ServiceGrid → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service_grid.default.primary.list[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  list: prismic.GroupField<Simplify<ServiceGridSliceDefaultPrimaryListItem>>;
 }
 
 /**
@@ -348,6 +482,21 @@ export interface TextAndImageSliceDefaultPrimaryOptionsItem {
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: text_and_image.default.primary.options[].services
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  services: prismic.ContentRelationshipField<"service">;
+}
+
+/**
+ * Item in *TextAndImage → Image on Left → Primary → Options*
+ */
+export interface TextAndImageSliceImageOnLeftPrimaryOptionsItem {
+  /**
+   * Services field in *TextAndImage → Image on Left → Primary → Options*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.options[].services
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   services: prismic.ContentRelationshipField<"service">;
@@ -506,6 +655,18 @@ export interface TextAndImageSliceImageOnLeftPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   theme: prismic.SelectField<"Dark Pink" | "Light Pink">;
+
+  /**
+   * Options field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.options[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  options: prismic.GroupField<
+    Simplify<TextAndImageSliceImageOnLeftPrimaryOptionsItem>
+  >;
 }
 
 /**
@@ -540,6 +701,51 @@ export type TextAndImageSlice = prismic.SharedSlice<
   TextAndImageSliceVariation
 >;
 
+/**
+ * Primary content in *VideoBlock → Default → Primary*
+ */
+export interface VideoBlockSliceDefaultPrimary {
+  /**
+   * Youtube Video ID field in *VideoBlock → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: video_block.default.primary.youtube_video_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  youtube_video_id: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for VideoBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<VideoBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *VideoBlock*
+ */
+type VideoBlockSliceVariation = VideoBlockSliceDefault;
+
+/**
+ * VideoBlock Shared Slice
+ *
+ * - **API ID**: `video_block`
+ * - **Description**: VideoBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type VideoBlockSlice = prismic.SharedSlice<
+  "video_block",
+  VideoBlockSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -564,6 +770,8 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      OffersDocument,
+      OffersDocumentData,
       ServiceDocument,
       ServiceDocumentData,
       SettingsDocument,
@@ -574,17 +782,27 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      OfferGridSlice,
+      OfferGridSliceDefaultPrimary,
+      OfferGridSliceVariation,
+      OfferGridSliceDefault,
       ServiceGridSlice,
+      ServiceGridSliceDefaultPrimaryListItem,
       ServiceGridSliceDefaultPrimary,
       ServiceGridSliceVariation,
       ServiceGridSliceDefault,
       TextAndImageSlice,
       TextAndImageSliceDefaultPrimaryOptionsItem,
       TextAndImageSliceDefaultPrimary,
+      TextAndImageSliceImageOnLeftPrimaryOptionsItem,
       TextAndImageSliceImageOnLeftPrimary,
       TextAndImageSliceVariation,
       TextAndImageSliceDefault,
       TextAndImageSliceImageOnLeft,
+      VideoBlockSlice,
+      VideoBlockSliceDefaultPrimary,
+      VideoBlockSliceVariation,
+      VideoBlockSliceDefault,
     };
   }
 }

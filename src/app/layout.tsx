@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { createClient } from "@/prismicio";
 import { Advent_Pro } from "next/font/google";
+import { Footer } from "@/components/Footer";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -53,6 +54,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
