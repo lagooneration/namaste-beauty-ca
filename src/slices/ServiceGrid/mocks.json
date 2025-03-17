@@ -1,0 +1,39 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Greatly"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit ut in culpa est officia fugiat fugiat amet ipsum. Nulla sit duis dolor culpa ad sunt."
+						}
+					}
+				]
+			},
+			"services": {
+				"__TYPE__": "LinkContent",
+				"key": "9ecbb30e-ad7e-4bd9-8187-0e5d60e14093",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
+		"items": []
+	}
+]
