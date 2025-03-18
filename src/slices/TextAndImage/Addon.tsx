@@ -82,11 +82,11 @@ export async function Addon({ id }: Props) {
                       </p>
                     </div>
                   </div>
-                  <div className="text-brand-logo hover:text-brand-purple font-hussar text-sm sm:text-base font-medium bg-brand-gray/70 py-1.5 px-3 rounded-md hover:bg-white/20 transition-colors">
+                  <div className="text-brand-purple hover:text-purple-500 font-hussar text-sm sm:text-base font-medium bg-brand-gray/40 py-1.5 px-3 rounded-md transition-colors">
                     {service.data.save_offer && discountedPrice ? (
                       <div className="flex flex-col items-end gap-0.5">
                         <span className="text-xs line-through opacity-70">{originalPrice}</span>
-                        <span className="absolute top-1 right-8 text-brand-blue font-bold">{discountedPrice}</span>
+                        <span className="absolute top-1 right-8 text-amber-200 font-bold">{discountedPrice}</span>
                       </div>
                     ) : (
                       originalPrice

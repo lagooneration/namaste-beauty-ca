@@ -7,5 +7,6 @@ export const components = {
   offer_grid: dynamic(() => import("./OfferGrid")),
   service_grid: dynamic(() => import("./ServiceGrid")),
   text_and_image: dynamic(() => import("./TextAndImage")),
+  text_image: dynamic(() => import("./TextImage")),
   video_block: dynamic(() => import("./VideoBlock")),
 };
