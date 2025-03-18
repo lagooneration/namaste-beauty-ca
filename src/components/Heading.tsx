@@ -16,7 +16,7 @@ export function Heading({
   return (
     <Comp
       className={clsx(
-        "font-hussar uppercase",
+        "font-sans uppercase",
         size === "xl" && "~text-4xl/8xl",
         size === "lg" && "~text-4xl/7xl",
         size === "md" && "~text-3xl/5xl",

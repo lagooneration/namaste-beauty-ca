@@ -33,6 +33,24 @@
           "label": "Price (cents)",
           "placeholder": ""
         }
+      },
+      "save_offer": {
+        "type": "Boolean",
+        "config": {
+          "label": "Save Offer",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        }
+      },
+      "discount": {
+        "type": "Link",
+        "config": {
+          "label": "Discount",
+          "select": "document",
+          "repeat": false,
+          "customtypes": ["discount"]
+        }
       }
     }
   }

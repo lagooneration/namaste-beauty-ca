@@ -3,18 +3,24 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { createClient } from "@/prismicio";
-import { Advent_Pro } from "next/font/google";
+import { Advent_Pro, Bowlby_One_SC, DM_Mono } from "next/font/google";
 import { Footer } from "@/components/Footer";
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+import { SVGFilters } from "@/components/SVGFilters";
+
+const bowlby = Bowlby_One_SC({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bowlby-sc",
+  weight: "400",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dm-mono",
+  weight: "500",
 });
+
 
 const adventPro = Advent_Pro({
   subsets: ["latin"],
@@ -50,10 +56,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${hussar.variable} ${adventPro.variable} antialiased`}
+        className={`${bowlby.variable} ${hussar.variable} ${dmMono.variable} ${adventPro.variable} antialiased`}
       >
         <Header />
         {children}
+        <SVGFilters />
         <Footer />
       </body>
     </html>

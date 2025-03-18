@@ -103,3 +103,29 @@
     transform: translateX(0);
   }
 }
+
+.hero {
+  flex: 1;
+}
+
+
+
+.hero-body .line {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.heading-line span {
+  position: relative;
+  will-change: transform;
+}
+
+.heading-word {
+  display: inline-block;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.heading-line {
+  overflow: hidden;
+  display: block;
+}

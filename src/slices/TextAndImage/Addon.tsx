@@ -14,7 +14,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-
+import Image from "next/image";
 async function getDominantColor(url: string) {
   const paletteURL = new URL(url);
   paletteURL.searchParams.set("palette", "json");
@@ -31,79 +31,76 @@ type Props = {
   id: string;
 };
 
-const VERTICAL_LINE_CLASSES =
-  "absolute top-0 h-full stroke-2 text-stone-300 transition-colors group-hover:text-stone-400";
-
-const HORIZONTAL_LINE_CLASSES =
-  "-mx-8 stroke-2 text-stone-300 transition-colors group-hover:text-stone-400";
-
 export async function Addon({ id }: Props) {
   const client = createClient();
   const service = await client.getByID<Content.ServiceDocument>(id);
 
-  const price = isFilled.number(service.data.price)
+  const originalPrice = isFilled.number(service.data.price)
     ? `$${(service.data.price / 100).toFixed(2)}`
     : "Price Not Available";
 
-  const dominantColor = isFilled.image(service.data.image)
-    ? await getDominantColor(service.data.image.url)
-    : undefined;
+
+    let discountedPrice;
+    let discountPercentage;
+    if (service.data.save_offer && isFilled.link(service.data.discount)) {
+      const discountDoc = await client.getByID<Content.DiscountDocument>(service.data.discount.id);
+      discountPercentage = discountDoc.data.sale_percentage;
+      
+      if (isFilled.number(service.data.price) && discountPercentage) {
+        const discount = (service.data.price * discountPercentage) / 100;
+        discountedPrice = `$${((service.data.price - discount) / 100).toFixed(2)}`;
+      }
+    }
+
 
 
 
   return (
-    <div className="group relative mx-auto w-full max-w-72 px-8 pt-4 ">
-          {/* <div className='mb-4 flex space-x-2'>
-          {ITEMS.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`rounded-md px-3 py-1 text-sm font-medium ${
-                activeIndex === index
-                  ? 'bg-zinc-200 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100'
-                  : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-400'
-              }`}
-            >
-              {item.title}
-            </button>
-          ))}
-        </div>
-        <div className='overflow-hidden border-t border-zinc-200 dark:border-zinc-700'>
-            <TransitionPanel
-              activeIndex={activeIndex}
-              transition={{ duration: 0.2, ease: 'easeInOut' }}
-              variants={{
-                enter: { opacity: 0, y: -50, filter: 'blur(4px)' },
-                center: { opacity: 1, y: 0, filter: 'blur(0px)' },
-                exit: { opacity: 0, y: 50, filter: 'blur(4px)' },
-              }}
-            >
-              {ITEMS.map((item, index) => (
-                <div key={index} className='py-2'>
-                  <h3 className='mb-2 font-medium text-zinc-800 dark:text-zinc-100'>
-                    {item.subtitle}
-                  </h3>
-                  <p className='text-zinc-600 dark:text-zinc-400'>{item.content}</p>
+        <Accordion className='flex w-full flex-col divide-y divide-zinc-200 dark:divide-zinc-700 pt-2'>
+          <AccordionItem value={service.data.name || "Service"}>
+            <AccordionTrigger className='w-full py-0.5 text-left'>
+              <div className="flex flex-col w-full z-10">
+                <div className="relative flex items-center justify-between w-96 py-3 px-4 rounded-lg bg-brand-pink/60 hover:bg-brand-gray/80 transition-colors duration-200">
+                  {service.data.save_offer && discountPercentage && (
+                    <div className="absolute bottom-2 left-20 bg-brand-orange text-brand-pink text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                      {discountPercentage}% OFF
+                    </div>
+                  )}
+                  <div className="flex items-center gap-3">
+                    <div className="text-brand-purple bg-white/30 backdrop-blur-xl p-2 rounded-lg shadow-sm">
+                      <Image 
+                        src="/Group.png" 
+                        alt={service.data.name || "Service"} 
+                        width={42} 
+                        height={42}
+                        className="object-contain" 
+                      />
+                    </div>
+                    <div>
+                      <p className="text-brand-purple font-hussar text-sm sm:text-base truncate max-w-[150px] sm:max-w-[200px]">
+                        {service.data.name}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-brand-logo hover:text-brand-purple font-hussar text-sm sm:text-base font-medium bg-brand-gray/70 py-1.5 px-3 rounded-md hover:bg-white/20 transition-colors">
+                    {service.data.save_offer && discountedPrice ? (
+                      <div className="flex flex-col items-end gap-0.5">
+                        <span className="text-xs line-through opacity-70">{originalPrice}</span>
+                        <span className="absolute top-1 right-8 text-brand-blue font-bold">{discountedPrice}</span>
+                      </div>
+                    ) : (
+                      originalPrice
+                    )}
+                  </div>
                 </div>
-              ))}
-            </TransitionPanel>
-          </div> */}
-          
-          <Accordion className='flex w-full flex-col divide-y divide-zinc-200 dark:divide-zinc-700'>
-            <AccordionItem value='getting-started'>
-              <AccordionTrigger className='w-full py-0.5 text-left'>
-                <div className="flex items-center justify-between">
-                {service.data.name}
-                {service.data.price}
-                </div>
-              </AccordionTrigger>
+              </div>
+            </AccordionTrigger>
               <AccordionContent>
-                <p className='font-adventPro text-left'>
+                <p className='font-mono font-extralight text-left'>
                    We Do Recommend Brow Tint For Fuller Looking Brows And More Definition That Last For 3-4 Weeks.
                 </p>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-    </div>
   );
 }

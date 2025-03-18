@@ -4,6 +4,61 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for Discount documents
+ */
+interface DiscountDocumentData {
+  /**
+   * Offer On field in *Discount*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: discount.offer_on
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  offer_on: prismic.BooleanField;
+
+  /**
+   * Offer Name field in *Discount*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: discount.offer_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  offer_name: prismic.KeyTextField;
+
+  /**
+   * Sale Percentage field in *Discount*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: discount.sale_percentage
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  sale_percentage: prismic.NumberField;
+}
+
+/**
+ * Discount document from Prismic
+ *
+ * - **API ID**: `discount`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DiscountDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<DiscountDocumentData>,
+    "discount",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | VideoBlockSlice
   | OfferGridSlice
@@ -171,6 +226,29 @@ interface ServiceDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#number
    */
   price: prismic.NumberField;
+
+  /**
+   * Save Offer field in *Service*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: service.save_offer
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  save_offer: prismic.BooleanField;
+
+  /**
+   * Discount field in *Service*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.discount
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  discount: prismic.ContentRelationshipField<"discount">;
 }
 
 /**
@@ -270,6 +348,7 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | DiscountDocument
   | HomepageDocument
   | OffersDocument
   | ServiceDocument
@@ -767,6 +846,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      DiscountDocument,
+      DiscountDocumentData,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
