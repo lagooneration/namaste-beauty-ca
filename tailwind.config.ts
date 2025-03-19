@@ -41,6 +41,12 @@ export default {
         "brand-gray": "#fffdf9",
         "brand-logo": "#c41a7c",
         "brand-teal": "#00a0a0",
+        "brand-amber": "#ffbf00",
+        "brand-amber-light": "#ffd700",
+        "brand-block-one": "#efb5c3",
+        "brand-block-two": "#ead8bd",
+        "brand-block-three": "#e7c9d1",
+        "brand-block-four": "#e2cdaf",
       },
       keyframes: {
         squiggle: {

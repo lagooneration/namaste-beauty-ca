@@ -26,9 +26,9 @@ export function ButtonLink({
         color === "orange" &&
           "from-brand-orange to-brand-lime text-black hover:text-black",
         color === "purple" &&
-          "from-brand-purple to-brand-lime text-white hover:text-black",
+          "from-brand-purple to-brand-pink text-white hover:text-black",
         color === "lime" && "from-brand-lime to-brand-orange text-black",
-        color === "logo" && "from-brand-logo to-pink-300 text-white hover:text-zinc-800",
+        color === "logo" && "from-brand-logo to-pink-300 text-white hover:text-brand-purple",
         className
       )}
       {...props}

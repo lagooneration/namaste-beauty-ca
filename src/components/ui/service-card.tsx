@@ -12,8 +12,8 @@ type ServiceCardProps = {
 const ServiceCard = ({ serviceName, price, discountPercentage }: ServiceCardProps) => {
   return (
     <>
-    <div className="absolute -top-5 left-3 z-10">
-    <Image src="/Group.png" alt="Group" width={62} height={62} />
+    <div className="absolute -top-3 left-3 z-10">
+    <Image src="/icons/icon1.png" alt="Group" width={70} height={70} />
   </div>
     <StyledWrapper>
       <div className="foodCard">
@@ -23,11 +23,11 @@ const ServiceCard = ({ serviceName, price, discountPercentage }: ServiceCardProp
           </svg>
         </button> */}
         {discountPercentage && (
-          <div className="Discount font-mono font-sm">{discountPercentage}% OFF</div>
+          <div className="Discount font-mono">{discountPercentage}% OFF</div>
         )}
         {/* <picture className="imageContainer">
         </picture> */}
-          <p style={{color: '{{'}}>|</p>
+          {/* <p style={{color: '{{color}}'}}>|</p> */}
         <footer className="priceAndButton">
         <p className="foodTitle">{serviceName}</p>
           
@@ -41,7 +41,7 @@ const ServiceCard = ({ serviceName, price, discountPercentage }: ServiceCardProp
 
 const StyledWrapper = styled.div`
   .foodCard {
-    height: 80px;
+    height: 60px;
     width: 280px;
     border-radius: 12px;
     background-color: rgb(255, 255, 255);
@@ -60,17 +60,19 @@ const StyledWrapper = styled.div`
 
   .Discount {
     position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 10px;
+    right: -10px;
+    top: -4px;
+    font-size: 8px;
     padding: 5px 10px 5px 10px;
     font-weight: 600;
-    color: rgb(189, 189, 189);
+    color: rgb(255, 50, 50);
     background-color: rgb(46, 46, 46);
     border-radius: 0px 15px 0px 15px;
     width: auto;
     height: auto;
     font-style: italic;
+    z-index: 10;
+    scale: 0.8;
   }
 
   .Like {
@@ -137,7 +139,7 @@ const StyledWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     padding-left: 8px;
   }
 
@@ -153,11 +155,11 @@ const StyledWrapper = styled.div`
   }
 
   .button {
-    padding: 0px 15px;
-    height: 25px;
+    padding: 0px 12px;
+    height: 30px;
     border: none;
-    background-color: rgb(116, 219, 160);
-    border-radius: 20px;
+    background-color: rgba(116, 219, 160, 0.5);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -166,6 +168,8 @@ const StyledWrapper = styled.div`
     transition: all 0.4s ease;
     opacity: 100%;
     font-size: 15px;
+    padding-top: -8px;
+    margin-bottom: 4px;
   }
 
   .button:hover {

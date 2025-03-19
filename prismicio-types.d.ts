@@ -176,6 +176,17 @@ interface OffersDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#number
    */
   price: prismic.NumberField;
+
+  /**
+   * Button field in *Offers*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: offers.button
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -545,9 +556,57 @@ export type HeroSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Hero → OtherVariation → Primary*
+ */
+export interface HeroSliceOtherVariationPrimary {
+  /**
+   * Heading field in *Hero → OtherVariation → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.otherVariation.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *Hero → OtherVariation → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.otherVariation.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *Hero → OtherVariation → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.otherVariation.primary.button
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * OtherVariation variation for Hero Slice
+ *
+ * - **API ID**: `otherVariation`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroSliceOtherVariation = prismic.SharedSliceVariation<
+  "otherVariation",
+  Simplify<HeroSliceOtherVariationPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Hero*
  */
-type HeroSliceVariation = HeroSliceDefault;
+type HeroSliceVariation = HeroSliceDefault | HeroSliceOtherVariation;
 
 /**
  * Hero Shared Slice
@@ -938,6 +997,21 @@ export interface TextImageSliceDefaultPrimaryOptionsItem {
 }
 
 /**
+ * Item in *TextImage → imageOnLeft → Primary → Options*
+ */
+export interface TextImageSliceImageOnLeftPrimaryOptionsItem {
+  /**
+   * Services field in *TextImage → imageOnLeft → Primary → Options*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.options[].services
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  services: prismic.ContentRelationshipField<"service">;
+}
+
+/**
  * Primary content in *TextImage → Default → Primary*
  */
 export interface TextImageSliceDefaultPrimary {
@@ -999,7 +1073,9 @@ export interface TextImageSliceDefaultPrimary {
    * - **API ID Path**: text_image.default.primary.theme
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  theme: prismic.SelectField<"Dark Pink" | "Light Pink">;
+  theme: prismic.SelectField<
+    "Dark Pink" | "Light Pink" | "Dark Amber" | "Light Amber"
+  >;
 
   /**
    * Options field in *TextImage → Default → Primary*
@@ -1028,9 +1104,103 @@ export type TextImageSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *TextImage → imageOnLeft → Primary*
+ */
+export interface TextImageSliceImageOnLeftPrimary {
+  /**
+   * Heading field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  body: prismic.KeyTextField;
+
+  /**
+   * Background Image field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.background_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
+
+  /**
+   * Foreground Image field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.foreground_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  foreground_image: prismic.ImageField<never>;
+
+  /**
+   * Button field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.button
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Theme field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.theme
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  theme: prismic.SelectField<
+    "Dark Pink" | "Light Pink" | "Dark Amber" | "Light Amber"
+  >;
+
+  /**
+   * Options field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.options[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  options: prismic.GroupField<
+    Simplify<TextImageSliceImageOnLeftPrimaryOptionsItem>
+  >;
+}
+
+/**
+ * imageOnLeft variation for TextImage Slice
+ *
+ * - **API ID**: `imageOnLeft`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextImageSliceImageOnLeft = prismic.SharedSliceVariation<
+  "imageOnLeft",
+  Simplify<TextImageSliceImageOnLeftPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *TextImage*
  */
-type TextImageSliceVariation = TextImageSliceDefault;
+type TextImageSliceVariation =
+  | TextImageSliceDefault
+  | TextImageSliceImageOnLeft;
 
 /**
  * TextImage Shared Slice
@@ -1131,8 +1301,10 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       HeroSlice,
       HeroSliceDefaultPrimary,
+      HeroSliceOtherVariationPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      HeroSliceOtherVariation,
       OfferGridSlice,
       OfferGridSliceDefaultPrimary,
       OfferGridSliceVariation,
@@ -1153,8 +1325,11 @@ declare module "@prismicio/client" {
       TextImageSlice,
       TextImageSliceDefaultPrimaryOptionsItem,
       TextImageSliceDefaultPrimary,
+      TextImageSliceImageOnLeftPrimaryOptionsItem,
+      TextImageSliceImageOnLeftPrimary,
       TextImageSliceVariation,
       TextImageSliceDefault,
+      TextImageSliceImageOnLeft,
       VideoBlockSlice,
       VideoBlockSliceDefaultPrimary,
       VideoBlockSliceVariation,

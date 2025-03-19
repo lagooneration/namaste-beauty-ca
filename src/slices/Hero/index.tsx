@@ -1,5 +1,5 @@
 "use client";
-import { FC, useRef } from "react";
+import { useRef } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
 import { Bounded } from "@/components/Bounded";
@@ -10,7 +10,7 @@ import { TallLogo } from "./TallLogo";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
-
+import clsx from "clsx";
 gsap.registerPlugin(useGSAP);
 
 /**
@@ -45,12 +45,17 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       overflow: "hidden",
     });
 
+    // Set will-change using DOM
+    const headingWords = document.querySelectorAll(".hero-heading .heading-word");
+    headingWords.forEach(word => {
+      (word as HTMLElement).style.willChange = "transform";
+    });
+
     gsap.set(".hero-heading .heading-word", {
       y: "100%",
       opacity: 0,
       rotateX: -80,
-      transformOrigin: "0% 50% -100",
-      will_change: "transform"
+      transformOrigin: "0% 50% -100"
     });
 
     gsap.set(".hero-body .line", {
@@ -91,9 +96,15 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-brand-pink relative h-dvh overflow-hidden text-zinc-800 bg-texture"
+      className="bg-brand-pink relative h-dvh overflow-hidden text-zinc-800"
     > 
     <div ref={container} className="hero">
+      <div
+        className={clsx(
+          "flex flex-col items-center gap-8 text-center md:items-start md:text-left bg-texture",
+          slice.variation === "otherVariation" && "text-brand-purple"
+        )}
+        >
     <div className="absolute inset-0 flex items-center pt-20">
         <WideLogo className="w-full text-brand-purple hidden opacity-20 mix-blend-multiply lg:block" />
         <TallLogo className="w-full text-brand-purple opacity-20 mix-blend-multiply lg:hidden" />
@@ -105,7 +116,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           <div><PrismicText field={slice.primary.heading} /></div>
         </Heading>
         <div className="flex relative w-full flex-col items-center justify-between ~gap-2/4 lg:flex-row">
-          <div className="hero-body max-w-[45ch] ~text-lg/xl font-geist-mono">
+          <div className="hero-body max-w-[45ch] ~text-lg/xl font-dm-mono">
             <PrismicRichText field={slice.primary.body} />
           </div>
           <ButtonLink
@@ -118,6 +129,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             {slice.primary.button.text}
           </ButtonLink>
         </div>
+      </div>
       </div>
       </div>
     </Bounded>

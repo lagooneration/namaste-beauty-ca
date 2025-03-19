@@ -6,7 +6,7 @@ import { createClient } from "@/prismicio";
 import { ButtonLink } from "@/components/ButtonLink";
 import { HorizontalLine, VerticalLine } from "@/components/Line";
 import clsx from "clsx";
-import { Scribble } from "./Scribble";
+import { Scribble } from "@/slices/ServiceGrid/Scribble";
 
 async function getDominantColor(url: string) {
   const paletteURL = new URL(url);
@@ -56,7 +56,7 @@ export async function Addon({ id }: Props) {
       </div>
       <div className="-mb-1 overflow-hidden py-4">
         <Scribble
-          className="absolute inset-0 h-full w-full"
+          className="absolute inset-0 h-[60%] top-1/2 -translate-y-1/2 w-full"
           color={dominantColor}
         />
         <PrismicNextImage

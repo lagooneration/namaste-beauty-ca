@@ -50,8 +50,8 @@ export async function Addon({ id }: Props) {
   return (
     <Accordion className='flex w-full flex-col divide-y divide-zinc-200 dark:divide-zinc-700 pt-2'>
       <AccordionItem value={service.data.name || "Service"}>
-        <AccordionTrigger className='w-full py-0.5 text-left'>
-          <div className="flex flex-col w-full z-10">
+        <AccordionTrigger className='w-full py-0.5'>
+        <div className="flex flex-col w-full max-w-[290px] mx-auto z-10 p-2">
             <ServiceCard
               serviceName={service.data.name || "Service"}
               price={price}
@@ -59,9 +59,9 @@ export async function Addon({ id }: Props) {
             />
           </div>
         </AccordionTrigger>
-        <AccordionContent>
-          <p className='font-mono font-extralight text-left'>
-            We Do Recommend Brow Tint For Fuller Looking Brows And More Definition That Last For 3-4 Weeks.
+        <AccordionContent className="max-w-[290px] mx-auto w-full mb-4">
+          <p className='font-mono font-extralight text-left ml-4'>
+            For fuller looking brows. Definition lasts 3-4 weeks
           </p>
         </AccordionContent>
       </AccordionItem>

@@ -11,7 +11,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
 import { ParallaxImage } from "@/slices/TextAndImage/ParallaxImage";
-import { Addon } from "@/slices/TextAndImage/Addon";
+import { Addon } from "@/slices/TextImage/Addon";
 
 declare module "react" {
   interface CSSProperties {
@@ -46,31 +46,39 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
       style={{ "--index": index }}
     >
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
+      <div 
+          className={clsx(
+            "w-full",
+            slice.variation === "imageOnLeft" && "md:order-1"
+          )}>
+          <ParallaxImage
+            foregroundImage={slice.primary.foreground_image}
+            backgroundImage={slice.primary.background_image}
+          />
+        </div>
         <div
           className={clsx(
             "flex flex-col items-center gap-8 text-center md:items-start md:text-left",
-            slice.variation === "imageOnLeft" && "md:order-2 text-brand-purple"
+            slice.variation === "imageOnLeft" && "md:order-2"
           )}
         >
           <SlideIn>
             <Heading size="lg" as="h2">
-              {/* <PrismicText field={slice.primary.heading} /> */}
               {slice.primary.heading}
             </Heading>
           </SlideIn>
-          <SlideIn>
+          {/* <SlideIn>
             <div className="max-w-md text-lg leading-relaxed">
-              {/* <PrismicRichText field={slice.primary.body} /> */}
               {slice.primary.body}
             </div>
-          </SlideIn>
+          </SlideIn> */}
           <SlideIn>
           {slice.primary.options.map(
-          ({ services }) =>
-            isFilled.contentRelationship(services) && (
-              <Addon key={services.id} id={services.id} />
-            )
-        )}
+            ({ services }) =>
+              isFilled.contentRelationship(services) && (
+                <Addon key={services.id} id={services.id} />
+              )
+          )}
           </SlideIn>
           
           <SlideIn>
@@ -82,11 +90,7 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
             </ButtonLink>
           </SlideIn>
         </div>
-
-        <ParallaxImage
-          foregroundImage={slice.primary.foreground_image}
-          backgroundImage={slice.primary.background_image}
-        />
+        
       </div>
     </Bounded>
   );

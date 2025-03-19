@@ -69,7 +69,7 @@ export function ParallaxImage({
         ref={backgroundRef}
         className="col-start-1 row-start-1 transition-transform"
       >
-        <PrismicNextImage field={backgroundImage} alt="" className="w-11/12" />
+        <PrismicNextImage field={backgroundImage} alt="" className="w-11/12 opacity-0" />
       </div>
 
       <div

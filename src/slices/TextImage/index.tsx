@@ -11,7 +11,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
 import { ParallaxImage } from "@/slices/TextImage/ParallaxImage";
-import { Addon } from "@/slices/TextImage/Addon";
+import { Addon } from "@/slices/TextAndImage/Addon";
 
 declare module "react" {
   interface CSSProperties {
@@ -40,25 +40,32 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={clsx(
         "sticky top-[calc(var(--index)*2rem)]",
-        theme === "Dark Pink" && "bg-texture2 bg-brand-logo text-white",
-        theme === "Light Pink" && "bg-texture bg-brand-pink text-white",
+        theme === "Dark Pink" && "bg-brand-block-one text-white bg-[url('/images/makeup-1.png')] bg-cover bg-center bg-no-repeat",
+        theme === "Dark Amber" && " bg-brand-block-two text-white",
+        theme === "Light Pink" && "bg-brand-block-three text-white",
+        theme === "Light Amber" && "bg-brand-block-four text-white"
+
       )}
       style={{ "--index": index }}
     >
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
-        {/* <div
+        <div
           className={clsx(
             "flex flex-col items-center gap-8 text-center md:items-start md:text-left",
             slice.variation === "imageOnLeft" && "md:order-2 text-brand-purple"
           )}
-        > */}
-        <div
-          className="flex flex-col items-center gap-8 text-center md:items-start md:text-left">
+        >
+        {/* <div className="flex flex-col items-center gap-8 text-center md:items-start md:text-left"> */}
           <SlideIn>
-            <Heading size="lg" as="h2">
-              {/* <PrismicText field={slice.primary.heading} /> */}
-              {slice.primary.heading}
-            </Heading>
+
+            {/* <Heading size="lg" as="h2">
+              <PrismicText field={slice.primary.heading} />
+            </Heading> */}
+            <div className="text-brand-purple font-hussar ~text-4xl/7xl">
+              {/* <h2 className="text-brand-purple font-hussar ~text-4xl/7xl">
+                </h2> */}
+                {slice.primary.heading}
+            </div>
           </SlideIn>
           <SlideIn>
             <div className="max-w-md text-lg leading-relaxed">
@@ -66,13 +73,13 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
               {slice.primary.body}
             </div>
           </SlideIn>
-          <SlideIn>
+          <SlideIn>    
           {slice.primary.options.map(
-          ({ services }) =>
-            isFilled.contentRelationship(services) && (
-              <Addon key={services.id} id={services.id} />
-            )
-        )}
+            ({ services }) =>
+              isFilled.contentRelationship(services) && (
+                <Addon key={services.id} id={services.id} />
+              )
+            )}
           </SlideIn>
           
           <SlideIn>
@@ -84,11 +91,12 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
             </ButtonLink>
           </SlideIn>
         </div>
-
+        <div className="w-full">
         <ParallaxImage
           foregroundImage={slice.primary.foreground_image}
           backgroundImage={slice.primary.background_image}
-        />
+          />
+          </div>
       </div>
     </Bounded>
   );
