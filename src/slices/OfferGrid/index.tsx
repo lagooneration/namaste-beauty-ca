@@ -19,11 +19,12 @@ const OfferGrid = async ({ slice }: OfferGridProps): Promise<JSX.Element> => {
   const offers = await client.getAllByType("offers");
 
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-texture bg-brand-gray"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 bg-texture bg-brand-gray"
     >
+      <div className="mx-auto w-full max-w-6xl">
       <SlideIn>
         {/* <Heading as="h2" size="lg" className="mb-8 text-center text-brand-logo">
         </Heading> */}
@@ -43,7 +44,8 @@ const OfferGrid = async ({ slice }: OfferGridProps): Promise<JSX.Element> => {
           </React.Fragment>
         ))}
       </div>
-    </Bounded>
+      </div>
+    </section>
   );
 };
 

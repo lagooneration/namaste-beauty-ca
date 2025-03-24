@@ -30,11 +30,11 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
 
 
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={clsx(
-        "sticky top-[calc(var(--index)*2rem)]",
+        "px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 sticky top-[calc(var(--index)*2rem)]",
         theme === "Dark Pink" && "bg-brand-block-one text-white",
         theme === "Dark Amber" && " bg-brand-block-two text-white",
         theme === "Light Pink" && "bg-brand-block-three text-white",
@@ -45,10 +45,10 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
         "--index": index,
         ...(slice.primary.section_image && {
           backgroundImage: `url(${slice.primary.section_image.url})`
-        })
+        } as React.CSSProperties)
       }}
     >
-      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
+      <div className="mx-auto w-full max-w-6xl grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
         <div
           className={clsx(
             "flex flex-col items-center gap-8 text-center md:items-start md:text-left",
@@ -100,7 +100,7 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
           />
           </div>
       </div>
-    </Bounded>
+    </section>
   );
 };
 

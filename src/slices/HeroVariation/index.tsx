@@ -125,11 +125,14 @@ const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
 
   return (  
     
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative h-dvh overflow-hidden text-zinc-800 bg-none"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 relative h-dvh overflow-hidden text-zinc-800 bg-none"
     > 
+    
+
+    <div ref={container} className="hero mx-auto w-full max-w-6xl">
     {/* Background Video */}
     <div className="absolute inset-0 -z-10">
         <video
@@ -146,8 +149,6 @@ const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
         </video>
         {/* Overlay to ensure text readability */}
       </div>
-
-    <div ref={container} className="hero">
       <div
         className="flex flex-col items-center gap-8 text-center md:items-start md:text-left bg-texture">
           {/* <div className="absolute inset-0 flex items-center pt-20"> */}
@@ -191,7 +192,7 @@ const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
       
       </div>
       </div>
-    </Bounded>
+    </section>
   );
 };
 

@@ -31,17 +31,17 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
 
 
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={clsx(
-        "sticky top-[calc(var(--index)*2rem)]",
+        "px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 sticky top-[calc(var(--index)*2rem)]",
         theme === "Dark Pink" && "bg-texture bg-brand-logo text-white",
         theme === "Light Pink" && "bg-texture bg-brand-pink text-white",
       )}
-      style={{ "--index": index }}
+      style={{ "--index": index } as React.CSSProperties}
     >
-      <div className="grid grid-cols-1 items-center scale-95 gap-12 md:grid-cols-2 md:gap-24">
+      <div className="mx-auto w-full max-w-6xl grid grid-cols-1 items-center scale-95 gap-12 md:grid-cols-2 md:gap-24">
       <div 
           className={clsx(
             "w-full",
@@ -88,7 +88,7 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
         </div>
         
       </div>
-    </Bounded>
+    </section>
   );
 };
 

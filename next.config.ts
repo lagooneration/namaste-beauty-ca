@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         pathname: '/maps/api/staticmap/**',
       },
     ],
+    domains: ['images.prismic.io'],
   },
   webpack: (config) => {
     config.module.rules.push({
@@ -24,6 +25,7 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+  reactStrictMode: true,
 };
 
 export default nextConfig;

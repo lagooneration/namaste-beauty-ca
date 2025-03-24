@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import { Bounded } from "@/components/Bounded";
 import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
@@ -18,13 +19,13 @@ export type VideoBlockProps = SliceComponentProps<Content.VideoBlockSlice>;
  */
 const VideoBlock = ({ slice }: VideoBlockProps): JSX.Element => {
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-texture bg-zinc-900"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 bg-texture bg-zinc-900"
     >
       <h2 className="sr-only">Video Reel</h2>
-      <div className="relative aspect-video">
+      <div className="mx-auto w-full max-w-6xl relative aspect-video">
         {/* Masks */}
         <div
           className={clsx(
@@ -58,7 +59,7 @@ const VideoBlock = ({ slice }: VideoBlockProps): JSX.Element => {
           />
         </div>
       </div>
-    </Bounded>
+    </section>
   );
 };
 

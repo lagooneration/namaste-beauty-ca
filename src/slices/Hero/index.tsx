@@ -95,12 +95,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
   }, { scope: container });
 
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative h-dvh overflow-hidden text-zinc-800 bg-brand-pink"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 relative h-dvh overflow-hidden text-zinc-800 bg-brand-pink"
     > 
-    <div ref={container} className="hero">
+    <div ref={container} className="hero mx-auto w-full max-w-6xl">
       <div
         className={clsx(
           "flex flex-col items-center gap-8 text-center md:items-start md:text-left bg-texture",
@@ -108,12 +108,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         )}
         >
           {/* <div className="absolute inset-0 flex items-center pt-20"> */}
-    <div 
-      className={clsx(
-          "absolute inset-0 flex items-center pt-20",
-          slice.variation === "otherVariation" && "opacity-50"
-        )}
-        >
+    <div className="absolute inset-0 flex items-center pt-20">
         <WideLogo className="w-full text-brand-purple hidden opacity-20 mix-blend-multiply lg:block" />
         <TallLogo className="w-full text-brand-purple opacity-20 mix-blend-multiply lg:hidden" />
       </div>
@@ -144,7 +139,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       </div>
       
       <InteractiveModel />
-    </Bounded>
+    </section>
   );
 };
 

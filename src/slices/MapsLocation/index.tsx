@@ -19,10 +19,10 @@ const MapsLocation = ({ slice }: MapsLocationProps) => {
   const longitude = slice.primary.lon ?? -122.598780;
 
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-brand-gray py-20"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 bg-brand-gray py-20"
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">
@@ -59,7 +59,7 @@ const MapsLocation = ({ slice }: MapsLocationProps) => {
           </div>
         </div>
       </div>
-    </Bounded>
+    </section>
   );
 }
 

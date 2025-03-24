@@ -16,11 +16,12 @@ export type ServiceGridProps = SliceComponentProps<Content.ServiceGridSlice>;
  */
 const ServiceGrid: FC<ServiceGridProps> = ({ slice }) => {
   return (
-    <Bounded
+    <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="bg-texture bg-brand-gray"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 bg-texture bg-brand-gray"
     >
+      <div className="mx-auto w-full max-w-6xl">
       <SlideIn>
         <Heading className="text-center ~mb-4/6 text-brand-logo" as="h2">
           <PrismicText field={slice.primary.heading} />
@@ -39,7 +40,8 @@ const ServiceGrid: FC<ServiceGridProps> = ({ slice }) => {
         )
     )}
     </div>
-  </Bounded>
+    </div>
+  </section>
   );
 };
 
