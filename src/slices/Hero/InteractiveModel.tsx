@@ -2,7 +2,7 @@
 
 import * as THREE from "three";
 import { Model } from "@/components/Model";
-import { ContactShadows, Environment, Html, OrbitControls } from "@react-three/drei";
+import { ContactShadows, Environment, Html } from "@react-three/drei";
 import { Canvas, ThreeEvent, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -106,7 +106,7 @@ function Scene() {
     gsap.timeline({
       onComplete: () => {
         setAnimating(false);
-        setShowHotspot((current) => ({
+        setShowHotspot(() => ({
           front: true,
           middle: true,
           back: true

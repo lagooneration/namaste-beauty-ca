@@ -1,34 +1,7 @@
 import { Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage } from "@prismicio/next";
-import { FaStar } from "react-icons/fa6";
-
 import { createClient } from "@/prismicio";
-import { ButtonLink } from "@/components/ButtonLink";
-import { HorizontalLine, VerticalLine } from "@/components/Line";
-import clsx from "clsx";
-import { Scribble } from "./Scribble";
-import { SlideIn } from "@/components/SlideIn";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from '@/components/ui/accordion';
-import Image from "next/image";
-import ServiceCard from "@/components/ui/service-card";
 import ServiceCards from "@/components/ui/service-cards";
 
-async function getDominantColor(url: string) {
-  const paletteURL = new URL(url);
-  paletteURL.searchParams.set("palette", "json");
-
-  const res = await fetch(paletteURL);
-  const json = await res.json();
-
-  return (
-    json.dominant_colors.vibrant?.hex || json.dominant_colors.vibrant_light?.hex
-  );
-}
 
 type Props = {
   id: string;

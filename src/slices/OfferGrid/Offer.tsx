@@ -1,6 +1,6 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { Content, isFilled } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { PrismicNextImage } from "@prismicio/next";
 import { Scribble } from "./Scribble";
 import clsx from "clsx";
 import { Bounded } from "@/components/Bounded";

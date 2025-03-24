@@ -10,8 +10,6 @@ import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import { useEffect } from "react";
 import { HeroCard } from "@/components/HeroCard";
-import ImageScroll from "@/components/ImageScroll";
-import GlassCards from "@/components/GlassCards";
 
 gsap.registerPlugin(useGSAP);
 

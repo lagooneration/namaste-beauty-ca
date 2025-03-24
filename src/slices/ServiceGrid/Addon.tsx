@@ -3,7 +3,6 @@ import { PrismicNextImage } from "@prismicio/next";
 import { FaStar } from "react-icons/fa6";
 
 import { createClient } from "@/prismicio";
-import { ButtonLink } from "@/components/ButtonLink";
 import { HorizontalLine, VerticalLine } from "@/components/Line";
 import clsx from "clsx";
 import { Scribble } from "@/slices/ServiceGrid/Scribble";

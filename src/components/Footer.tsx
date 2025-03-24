@@ -1,17 +1,7 @@
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import React from "react";
-import { asImageSrc } from "@prismicio/client";
-
-import { createClient } from "@/prismicio";
 import { Logo } from "@/components/Logo";
-import { Bounded } from "./Bounded";
 import Link from "next/link";
-export async function Footer() {
-  const client = createClient();
-  const settings = await client.getSingle("settings");
-
-
-
+export function Footer() {
   return (
     <footer className="bg-brand-logo bg-texture text-brand-gray py-12">
       <div className="container mx-auto px-4">

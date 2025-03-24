@@ -1,18 +1,11 @@
 import { Content, isFilled } from "@prismicio/client";
-import {
-  PrismicRichText,
-  PrismicText,
-  SliceComponentProps,
-} from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import clsx from "clsx";
 
 import { Bounded } from "@/components/Bounded";
 import { ButtonLink } from "@/components/ButtonLink";
-import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
 import { ParallaxImage } from "@/slices/TextImage/ParallaxImage";
-import { Addon } from "@/slices/TextAndImage/Addon";
-import { Docking } from "../TextAndImage/Docking";
 import { Scards } from "./Scards";
 
 declare module "react" {

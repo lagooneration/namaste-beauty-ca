@@ -12,7 +12,6 @@ import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import clsx from "clsx";
 import { InteractiveModel } from "./InteractiveModel";
-import { HeroCard } from "@/components/HeroCard";
 
 gsap.registerPlugin(useGSAP);
 

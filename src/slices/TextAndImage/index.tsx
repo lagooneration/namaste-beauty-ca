@@ -1,9 +1,5 @@
 import { Content, isFilled } from "@prismicio/client";
-import {
-  PrismicRichText,
-  PrismicText,
-  SliceComponentProps,
-} from "@prismicio/react";
+import { SliceComponentProps } from "@prismicio/react";
 import clsx from "clsx";
 
 import { Bounded } from "@/components/Bounded";
