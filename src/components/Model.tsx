@@ -7,13 +7,44 @@ Source: https://sketchfab.com/3d-models/makeup-cosmetics-97038c2b5b7d44b1851ba9e
 Title: Makeup & Cosmetics
 */
 
+import * as THREE from 'three'
 import React, { useRef, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
 import gsap from 'gsap'
+import { GLTF } from "three-stdlib";
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF('/makeup.gltf')
-  const groupRef = useRef()
+type ModelProps = {
+  position?: THREE.Vector3;
+  material?: THREE.MeshStandardMaterial;
+  constantWheelSpin?: boolean;
+};
+
+type GLTFResult = GLTF & {
+  nodes: {
+    pCylinder13_Black_0: THREE.Mesh;
+    pCylinder13_blinn5_0: THREE.Mesh;
+    pCylinder13_Iron_0: THREE.Mesh;
+    pCylinder13_lambert1_0: THREE.Mesh;
+    pCylinder13_Wood_0: THREE.Mesh;
+    pCylinder13_Blush_0: THREE.Mesh;
+    pCylinder13_Crystal_0: THREE.Mesh;
+  }
+  materials: {
+    Black: THREE.MeshStandardMaterial;
+    blinn5: THREE.MeshStandardMaterial;
+    Iron: THREE.MeshStandardMaterial;
+    lambert1: THREE.MeshStandardMaterial;
+    Wood: THREE.MeshStandardMaterial;
+    Blush: THREE.MeshStandardMaterial;
+    Crystal: THREE.MeshStandardMaterial;
+  };
+};
+
+export function Model(props: ModelProps) {
+  const groupRef = useRef<THREE.Group>(null);
+  const gltf = useGLTF("/makeup.gltf");
+  // Cast to unknown first, then to GLTFResult to avoid type errors
+  const { nodes, materials } = gltf as unknown as GLTFResult;
 
   // Add fade-in animation on mount
   useEffect(() => {
@@ -25,12 +56,15 @@ export function Model(props) {
       ease: "power3.out"
     });
     
-    gsap.from(groupRef.current.material, {
-      opacity: 0,
-      duration: 1.5,
-      ease: "power3.out"
-    });
-  }, []);
+    // Check if material exists before animating
+    if (props.material) {
+      gsap.from(props.material, {
+        opacity: 0,
+        duration: 1.5,
+        ease: "power3.out"
+      });
+    }
+  }, [props.material]);
 
   return (
     <group ref={groupRef} {...props} dispose={null}>
