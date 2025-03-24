@@ -11,7 +11,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
 import { ParallaxImage } from "@/slices/TextAndImage/ParallaxImage";
-import { Addon } from "@/slices/TextImage/Addon";
+import { Addon } from "@/slices/TextAndImage/Addon";
 
 declare module "react" {
   interface CSSProperties {

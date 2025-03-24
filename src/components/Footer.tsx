@@ -13,15 +13,15 @@ export async function Footer() {
 
 
   return (
-    <footer className="bg-brand-logo text-brand-gray py-12">
+    <footer className="bg-brand-logo bg-texture text-brand-gray py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <h3 className="text-xl font-bold">Namaste Beauty</h3>
-            <p className="text-sm text-gray-300">
+            <p className="text-sm text-brand-gray/60">
             Unlock your inner radiance with mindful self-care salon.
             </p>
-          <Logo className="pointer-events-none relative h-20 mix-blend-exclusion md:h-28" />
+          <Logo className="pointer-events-none relative mix-blend-difference" />
 
           </div>
 
@@ -68,7 +68,7 @@ export async function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+        <div className="border-t border-brand-gray/60 mt-8 pt-8 text-center text-sm text-brand-gray/60">
           <p>&copy; {new Date().getFullYear()} Namaste Beauty. All rights reserved.</p>
         </div>
       </div>

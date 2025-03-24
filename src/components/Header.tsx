@@ -19,7 +19,7 @@ export async function Header() {
           aria-label="Main"
           className="col-span-full row-start-2 md:col-span-1 md:col-start-2 md:row-start-1"
         >
-          <ul className="flex flex-wrap items-center justify-center gap-8 font-hussar">
+          <ul className="flex flex-wrap items-center justify-center gap-8 font-mono">
             {settings.data.navigation.map((item) => (
               <li key={item.link.text}>
                 <PrismicNextLink field={item.link} className="~text-lg/xl text-brand-logo" />

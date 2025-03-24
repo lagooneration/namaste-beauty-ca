@@ -1,0 +1,47 @@
+{
+  "id": "maps_location",
+  "type": "SharedSlice",
+  "name": "MapsLocation",
+  "description": "MapsLocation",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "lat": {
+          "type": "Number",
+          "config": {
+            "label": "Latitude",
+            "placeholder": ""
+          }
+        },
+        "lon": {
+          "type": "Number",
+          "config": {
+            "label": "Longitude",
+            "placeholder": ""
+          }
+        },
+        "address": {
+          "type": "Text",
+          "config": {
+            "label": "Address",
+            "placeholder": "Enter store address"
+          }
+        },
+        "hours": {
+          "type": "Text",
+          "config": {
+            "label": "Business Hours",
+            "placeholder": "Enter business hours"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

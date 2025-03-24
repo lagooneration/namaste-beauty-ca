@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"google_maps_address": {
+				"__TYPE__": "FieldContent",
+				"value": "box",
+				"type": "Text"
+			},
+			"lat": {
+				"__TYPE__": "FieldContent",
+				"value": "52",
+				"type": "Number"
+			},
+			"lon": {
+				"__TYPE__": "FieldContent",
+				"value": "98",
+				"type": "Number"
+			}
+		},
+		"items": []
+	}
+]

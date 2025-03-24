@@ -21,4 +21,7 @@ A modern beauty salon website built with Next.js and Prismic CMS that allows cus
 - **Animations**: Custom React hooks, GSAP
 - **Deployment**: Vercel
 
+## Media Credits
+
+- Video by cottonbro studio: https://www.pexels.com/video/dancer-through-a-translucent-covering-6541892/
 

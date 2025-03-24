@@ -59,7 +59,7 @@ export function Offer({ offer, index }: Props) {
         <ButtonLink 
         size="md"
         icon="cart"
-        color="logo"
+        color="purple"
         field={offer.data.button}><span className="font-mono whitespace-nowrap">BOOK NOW</span></ButtonLink>
       </div>
       {/* <div className="relative inset-0 flex items-end h-full justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">

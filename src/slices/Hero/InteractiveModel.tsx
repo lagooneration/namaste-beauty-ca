@@ -23,7 +23,6 @@ export function InteractiveModel() {
         <Suspense>
           <Scene />
         </Suspense>
-        <OrbitControls />
       </Canvas>
     </div>
   );
@@ -125,10 +124,10 @@ function Scene() {
     <group>
       <Environment files={"/hdr/warehouse-256.hdr"} />
       <group ref={originRef}>
-        <group ref={containerRef} position={[-0.25, 0, -0.635]}>
-          <group position={[0, 0.186, 0.635]} >
-            <group scale={[0.1, 0.1, 0.1]}>
-            <Model position={[0, 0, 0]} />
+        <group ref={containerRef} position={[-0.25, -1, -0.635]}>
+          <group position={[0, 0.686, 0.635]} >
+            <group scale={[0.17, 0.17, 0.17]}>
+            <Model position={[-1, 2.4, -2]} rotation={[-Math.PI/32, Math.PI/1.2, -Math.PI/0.5]}/>
             </group>
 
             <mesh position={[0, 0.27, 0.9]} name="front" onClick={onClick}>
@@ -148,18 +147,18 @@ function Scene() {
 
             <Hotspot
               isVisible={!animating && showHotspot.front}
-              position={[0, 0.5, 0.9]}
-              color="#B8FC39"
+              position={[0, -1.5, 0.9]}
+              color="#c41a7c"
             />
             <Hotspot
               isVisible={!animating && showHotspot.middle}
-              position={[0, 0.5, 0]}
-              color="#FF7A51"
+              position={[0, -1.5, 0]}
+              color="#c41a7c"
             />
             <Hotspot
               isVisible={!animating && showHotspot.back}
-              position={[0, 0.5, -0.9]}
-              color="#46ACFA"
+              position={[0, -1.5, -0.9]}
+              color="#c41a7c"
             />
           </group>
         </group>
@@ -167,7 +166,7 @@ function Scene() {
       <ContactShadows opacity={0.6} position={[0, -0.08, 0]} />
       <group
         rotation={[-Math.PI / 2, 0, -Math.PI / 2]}
-        position={[0, -0.09, -0.5]}
+        position={[0, -1.09, -0.5]}
         scale={[0.2, 0.2, 0.2]}
       >
         <Html

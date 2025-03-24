@@ -60,6 +60,7 @@ export type DiscountDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | MapsLocationSlice
   | HeroVariationSlice
   | VideoBlockSlice
   | OfferGridSlice
@@ -393,6 +394,7 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 type VariationOneDocumentDataSlicesSlice =
+  | MapsLocationSlice
   | HeroVariationSlice
   | TextImageSlice
   | VideoBlockSlice
@@ -715,6 +717,81 @@ type HeroVariationSliceVariation = HeroVariationSliceDefault;
 export type HeroVariationSlice = prismic.SharedSlice<
   "hero_variation",
   HeroVariationSliceVariation
+>;
+
+/**
+ * Primary content in *MapsLocation → Default → Primary*
+ */
+export interface MapsLocationSliceDefaultPrimary {
+  /**
+   * Latitude field in *MapsLocation → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: maps_location.default.primary.lat
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  lat: prismic.NumberField;
+
+  /**
+   * Longitude field in *MapsLocation → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: maps_location.default.primary.lon
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  lon: prismic.NumberField;
+
+  /**
+   * Address field in *MapsLocation → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Enter store address
+   * - **API ID Path**: maps_location.default.primary.address
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  address: prismic.KeyTextField;
+
+  /**
+   * Business Hours field in *MapsLocation → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Enter business hours
+   * - **API ID Path**: maps_location.default.primary.hours
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  hours: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for MapsLocation Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapsLocationSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MapsLocationSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MapsLocation*
+ */
+type MapsLocationSliceVariation = MapsLocationSliceDefault;
+
+/**
+ * MapsLocation Shared Slice
+ *
+ * - **API ID**: `maps_location`
+ * - **Description**: MapsLocation
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapsLocationSlice = prismic.SharedSlice<
+  "maps_location",
+  MapsLocationSliceVariation
 >;
 
 /**
@@ -1449,6 +1526,10 @@ declare module "@prismicio/client" {
       HeroVariationSliceDefaultPrimary,
       HeroVariationSliceVariation,
       HeroVariationSliceDefault,
+      MapsLocationSlice,
+      MapsLocationSliceDefaultPrimary,
+      MapsLocationSliceVariation,
+      MapsLocationSliceDefault,
       OfferGridSlice,
       OfferGridSliceDefaultPrimary,
       OfferGridSliceVariation,

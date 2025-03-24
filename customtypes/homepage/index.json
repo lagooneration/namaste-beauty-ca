@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "maps_location": {
+              "type": "SharedSlice"
+            },
             "hero_variation": {
               "type": "SharedSlice"
             },

@@ -8,9 +8,10 @@ import { ButtonLink } from "@/components/ButtonLink";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
-import clsx from "clsx";
-import { WideLogo } from "@/slices/Hero/WideLogo";
-import { TallLogo } from "@/slices/Hero/TallLogo";
+import { useEffect } from "react";
+import { HeroCard } from "@/components/HeroCard";
+import ImageScroll from "@/components/ImageScroll";
+import GlassCards from "@/components/GlassCards";
 
 gsap.registerPlugin(useGSAP);
 
@@ -24,6 +25,7 @@ export type HeroVariationProps = SliceComponentProps<Content.HeroVariationSlice>
  */
 const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
   const container = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useGSAP(() => {
     // Split and animate the heading text
@@ -93,12 +95,60 @@ const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
     };
   }, { scope: container });
 
-  return (
+  useEffect(() => {
+    const handleResize = () => {
+      if (videoRef.current) {
+        const video = videoRef.current;
+        const videoRatio = video.videoWidth / video.videoHeight;
+        const windowRatio = window.innerWidth / window.innerHeight;
+
+        if (window.innerWidth <= 768) { // Mobile view
+          video.style.width = '100vw';
+          video.style.height = '100vh';
+          video.style.objectFit = 'cover';
+          video.style.objectPosition = 'center center';
+        } else { // Desktop view
+          if (windowRatio > videoRatio) {
+            video.style.width = '100vw';
+            video.style.height = 'auto';
+          } else {
+            video.style.width = 'auto';
+            video.style.height = '100vh';
+          }
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial call
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (  
+    
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="relative h-dvh overflow-hidden text-zinc-800 bg-brand-pink"
+      className="relative h-dvh overflow-hidden text-zinc-800 bg-none"
     > 
+    {/* Background Video */}
+    <div className="absolute inset-0 -z-10">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute scale-105 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full"
+          poster="/video-poster.jpg" // Add a poster image while video loads
+        >
+          <source src="/herovid.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Overlay to ensure text readability */}
+      </div>
+
     <div ref={container} className="hero">
       <div
         className="flex flex-col items-center gap-8 text-center md:items-start md:text-left bg-texture">
@@ -111,13 +161,23 @@ const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
 
 
     <div className="absolute inset-0 mx-auto mt-24 grid max-w-6xl grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16">
-        <Heading className="hero-heading relative max-w-2xl place-self-start text-brand-logo mt-12">
+    <div className="relative max-w-2xl place-self-start">
+        <Heading className="hero-heading text-brand-logo/90 mt-12">
           <div><PrismicText field={slice.primary.heading} /></div>
+          
         </Heading>
-        <div className="flex relative w-full flex-col items-center justify-between ~gap-2/4 lg:flex-row">
-          <div className="hero-body max-w-[45ch] ~text-lg/xl font-dm-mono">
+        <div className="hero-body text-brand-gray/60 font-mono max-w-[45ch] ~text-lg/xl">
             <PrismicRichText field={slice.primary.body} />
           </div>
+    </div>
+        
+
+        <div className="flex relative w-full flex-col items-center justify-between ~gap-2/4 lg:flex-row">
+          {/* <GlassCards /> */}
+          <div className="flex mb-12">
+          <HeroCard />
+          </div>
+          
           <ButtonLink
             field={slice.primary.button}
             icon="cart"
@@ -128,7 +188,9 @@ const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
             {slice.primary.button.text}
           </ButtonLink>
         </div>
+        
       </div>
+      
       </div>
       </div>
     </Bounded>

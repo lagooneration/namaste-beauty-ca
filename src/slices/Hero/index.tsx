@@ -12,6 +12,7 @@ import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import clsx from "clsx";
 import { InteractiveModel } from "./InteractiveModel";
+import { HeroCard } from "@/components/HeroCard";
 
 gsap.registerPlugin(useGSAP);
 
@@ -124,7 +125,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           <div><PrismicText field={slice.primary.heading} /></div>
         </Heading>
         <div className="flex relative w-full flex-col items-center justify-between ~gap-2/4 lg:flex-row">
-          <div className="hero-body max-w-[45ch] ~text-lg/xl font-dm-mono">
+          <div className="hero-body max-w-[45ch] ~text-lg/xl font-mono">
             <PrismicRichText field={slice.primary.body} />
           </div>
           <ButtonLink
@@ -138,8 +139,11 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           </ButtonLink>
         </div>
       </div>
+
+      
       </div>
       </div>
+      
       <InteractiveModel />
     </Bounded>
   );

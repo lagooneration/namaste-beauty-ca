@@ -130,3 +130,16 @@
   overflow: hidden;
   display: block;
 }
+
+@layer utilities {
+  .video-background {
+    @apply absolute inset-0 w-full h-full object-cover;
+  }
+  
+  @media (max-width: 768px) {
+    .video-background {
+      @apply object-cover object-center;
+      transform: scale(1.5);
+    }
+  }
+}

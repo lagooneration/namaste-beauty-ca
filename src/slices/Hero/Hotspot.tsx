@@ -11,7 +11,7 @@ interface HotspotProps {
 export function Hotspot({
   position,
   isVisible,
-  color = "#E6FC6A",
+  color = "#c41a7c",
 }: HotspotProps) {
   const hotspotRef = useRef<THREE.Mesh>(null);
 

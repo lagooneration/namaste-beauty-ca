@@ -4,7 +4,7 @@ interface LogoProps {
   height?: number;
 }
 
-export function Logo({ className, width = 61, height = 55 }: LogoProps) {
+export function Logo({ className, width = 61, height = 25 }: LogoProps) {
   return (
     <img
       src="/logo.png"
