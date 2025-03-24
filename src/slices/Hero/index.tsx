@@ -1,8 +1,8 @@
 "use client";
+
 import { useRef } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
-import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
 import { WideLogo } from "./WideLogo";
@@ -12,7 +12,7 @@ import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import clsx from "clsx";
 import { InteractiveModel } from "./InteractiveModel";
-
+import { JSX } from "react";
 gsap.registerPlugin(useGSAP);
 
 /**

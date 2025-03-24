@@ -1,14 +1,12 @@
 import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import clsx from "clsx";
-
-import { Bounded } from "@/components/Bounded";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
 import { ParallaxImage } from "@/slices/TextAndImage/ParallaxImage";
 import { Addon } from "@/slices/TextAndImage/Addon";
-
+import { JSX } from "react";
 declare module "react" {
   interface CSSProperties {
     "--index"?: number;

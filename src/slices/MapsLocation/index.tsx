@@ -2,7 +2,6 @@
 
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import { Bounded } from "@/components/Bounded";
 import { StaticMap } from "@/components/StaticMap";
 
 /**
@@ -22,7 +21,7 @@ const MapsLocation = ({ slice }: MapsLocationProps) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 bg-brand-gray py-20"
+      className="px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 bg-brand-gray"
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8">

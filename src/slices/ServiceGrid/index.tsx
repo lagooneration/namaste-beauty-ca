@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { Content, isFilled } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
-import { Bounded } from "@/components/Bounded";
 import { SlideIn } from "@/components/SlideIn";
 import { Heading } from "@/components/Heading";
 import { Addon } from "./Addon";
-
+import { JSX } from "react";
 /**
  * Props for `ServiceGrid`.
  */
@@ -14,7 +13,7 @@ export type ServiceGridProps = SliceComponentProps<Content.ServiceGridSlice>;
 /**
  * Component for "ServiceGrid" Slices.
  */
-const ServiceGrid: FC<ServiceGridProps> = ({ slice }) => {
+const ServiceGrid: FC<ServiceGridProps> = ({ slice }): JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}

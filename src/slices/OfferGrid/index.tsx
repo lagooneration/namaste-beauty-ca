@@ -1,11 +1,10 @@
-import { Bounded } from "@/components/Bounded";
 import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import { PrismicText, SliceComponentProps } from "@prismicio/react";
 import React from "react";
 import { Offer } from "./Offer";
 import { SlideIn } from "@/components/SlideIn";
-
+import { JSX } from "react";
 /**
  * Props for `TeamGrid`.
  */
