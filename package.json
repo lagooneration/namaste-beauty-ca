@@ -31,6 +31,7 @@
     "three": "^0.174.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.10.1",
     "@slicemachine/adapter-next": "^0.3.69",
     "@types/node": "^20",
     "@types/react": "^18",
