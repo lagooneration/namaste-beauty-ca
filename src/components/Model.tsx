@@ -67,7 +67,7 @@ export function Model(props: ModelProps) {
   }, [props.material]);
 
   return (
-    <group ref={groupRef} {...props} dispose={null}>
+    <group ref={groupRef} {...props} dispose={null} position={[-1, 2.4, -2]} rotation={[-Math.PI/32, Math.PI/1.2, -Math.PI/0.5]}>
       <mesh
         castShadow
         receiveShadow

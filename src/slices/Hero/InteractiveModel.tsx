@@ -127,7 +127,7 @@ function Scene() {
         <group ref={containerRef} position={[-0.25, -1, -0.635]}>
           <group position={[0, 0.686, 0.635]} >
             <group scale={[0.17, 0.17, 0.17]}>
-            <Model position={[-1, 2.4, -2]} rotation={[-Math.PI/32, Math.PI/1.2, -Math.PI/0.5]}/>
+            <Model />
             </group>
 
             <mesh position={[0, 0.27, 0.9]} name="front" onClick={onClick}>
