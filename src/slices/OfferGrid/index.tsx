@@ -4,7 +4,7 @@ import { createClient } from "@/prismicio";
 import { Content } from "@prismicio/client";
 import { PrismicText, SliceComponentProps } from "@prismicio/react";
 import React from "react";
-import { Offer } from "./Offers";
+import { Offer } from "./Offer";
 import { SlideIn } from "@/components/SlideIn";
 
 /**
@@ -26,11 +26,14 @@ const OfferGrid = async ({ slice }: OfferGridProps): Promise<JSX.Element> => {
       className="bg-texture bg-brand-gray"
     >
       <SlideIn>
-        <Heading as="h2" size="lg" className="mb-8 text-center text-brand-logo">
+        {/* <Heading as="h2" size="lg" className="mb-8 text-center text-brand-logo">
+        </Heading> */}
+          <div className="flex justify-center mt-2 font-sans text-brand-purple ~text-4xl/7xl">
+
           <PrismicText field={slice.primary.heading} />
-        </Heading>
+          </div>
       </SlideIn>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-0 md:grid-cols-4">
         {offers.map((offer, index) => (
           <React.Fragment key={index}>
             {offer.data.name && (

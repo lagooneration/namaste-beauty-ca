@@ -60,6 +60,7 @@ export type DiscountDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | HeroVariationSlice
   | VideoBlockSlice
   | OfferGridSlice
   | ServiceGridSlice
@@ -217,6 +218,28 @@ interface ServiceDocumentData {
   name: prismic.KeyTextField;
 
   /**
+   * Description field in *Service*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Icon field in *Service*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
    * Image field in *Service*
    *
    * - **Field Type**: Image
@@ -260,6 +283,17 @@ interface ServiceDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
   discount: prismic.ContentRelationshipField<"discount">;
+
+  /**
+   * Background Image field in *Service*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: service.background_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
 }
 
 /**
@@ -359,6 +393,7 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 type VariationOneDocumentDataSlicesSlice =
+  | HeroVariationSlice
   | TextImageSlice
   | VideoBlockSlice
   | OfferGridSlice
@@ -618,6 +653,71 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceOtherVariation;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *HeroVariation → Default → Primary*
+ */
+export interface HeroVariationSliceDefaultPrimary {
+  /**
+   * Heading field in *HeroVariation → Default → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_variation.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *HeroVariation → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_variation.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button field in *HeroVariation → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_variation.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for HeroVariation Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroVariationSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeroVariationSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HeroVariation*
+ */
+type HeroVariationSliceVariation = HeroVariationSliceDefault;
+
+/**
+ * HeroVariation Shared Slice
+ *
+ * - **API ID**: `hero_variation`
+ * - **Description**: HeroVariation
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroVariationSlice = prismic.SharedSlice<
+  "hero_variation",
+  HeroVariationSliceVariation
+>;
+
+/**
  * Primary content in *OfferGrid → Default → Primary*
  */
 export interface OfferGridSliceDefaultPrimary {
@@ -857,6 +957,16 @@ export interface TextAndImageSliceDefaultPrimary {
   options: prismic.GroupField<
     Simplify<TextAndImageSliceDefaultPrimaryOptionsItem>
   >;
+
+  /**
+   * Section Image field in *TextAndImage → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.default.primary.section_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  section_image: prismic.ImageField<never>;
 }
 
 /**
@@ -947,6 +1057,16 @@ export interface TextAndImageSliceImageOnLeftPrimary {
   options: prismic.GroupField<
     Simplify<TextAndImageSliceImageOnLeftPrimaryOptionsItem>
   >;
+
+  /**
+   * Section Image field in *TextAndImage → Image on Left → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_and_image.imageOnLeft.primary.section_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  section_image: prismic.ImageField<never>;
 }
 
 /**
@@ -1088,6 +1208,16 @@ export interface TextImageSliceDefaultPrimary {
   options: prismic.GroupField<
     Simplify<TextImageSliceDefaultPrimaryOptionsItem>
   >;
+
+  /**
+   * Section Image field in *TextImage → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.default.primary.section_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  section_image: prismic.ImageField<never>;
 }
 
 /**
@@ -1180,6 +1310,16 @@ export interface TextImageSliceImageOnLeftPrimary {
   options: prismic.GroupField<
     Simplify<TextImageSliceImageOnLeftPrimaryOptionsItem>
   >;
+
+  /**
+   * Section Image field in *TextImage → imageOnLeft → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.imageOnLeft.primary.section_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  section_image: prismic.ImageField<never>;
 }
 
 /**
@@ -1305,6 +1445,10 @@ declare module "@prismicio/client" {
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceOtherVariation,
+      HeroVariationSlice,
+      HeroVariationSliceDefaultPrimary,
+      HeroVariationSliceVariation,
+      HeroVariationSliceDefault,
       OfferGridSlice,
       OfferGridSliceDefaultPrimary,
       OfferGridSliceVariation,

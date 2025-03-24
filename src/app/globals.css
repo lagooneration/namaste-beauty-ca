@@ -37,7 +37,7 @@
     background: inherit;
     width: 1rem;
     height: 100%;
-    clip-path: polygon(
+    /* clip-path: polygon(
       23% 19%,
       0 0,
       100% 0,
@@ -46,7 +46,7 @@
       29% 79%,
       9% 80%,
       0 33%
-    );
+    ); */
   }
 
   &::after {
@@ -57,7 +57,7 @@
     background: inherit;
     width: 1rem;
     height: 100%;
-    clip-path: polygon(
+    /* clip-path: polygon(
       100% 0,
       74% 28%,
       100% 29%,
@@ -66,7 +66,7 @@
       100% 100%,
       0 100%,
       0 0
-    );
+    ); */
   }
 }
 
@@ -74,6 +74,7 @@
   display: grid;
   grid-template-areas: "stack";
   place-items: center;
+  scale: 0.9;
 }
 
 .stack-layout > * {

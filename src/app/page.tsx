@@ -8,17 +8,17 @@ import { Content } from "@prismicio/client";
 
 export default async function Page() {
   const client = createClient();
-  const page = await client.getSingle("homepage");
-  const slices = bundleTextAndImageSlices(page.data.slices);
+  const page = await client.getSingle("variation_one");
+  const slices = bundleTextImageSlices(page.data.slices);
 
   return (
     <SliceZone
       slices={slices}
       components={{
         ...components,
-        text_and_image_bundle: ({
+        text_image_bundle: ({
           slice,
-        }: SliceComponentProps<TextAndImageBundleSlice>) => (
+        }: SliceComponentProps<TextImageBundleSlice>) => (
           <div>
             <SliceZone slices={slice.slices} components={components} />
           </div>
@@ -30,7 +30,7 @@ export default async function Page() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle("homepage").catch(() => notFound());
+  const page = await client.getSingle("variation_one").catch(() => notFound());
 
   return {
     title: page.data.meta_title,
@@ -41,33 +41,33 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-type TextAndImageBundleSlice = {
+type TextImageBundleSlice = {
   id: string;
-  slice_type: "text_and_image_bundle";
-  slices: Content.TextAndImageSlice[];
+  slice_type: "text_image_bundle";
+  slices: Content.TextImageSlice[];
 };
 
-function bundleTextAndImageSlices(
-  slices: Content.HomepageDocumentDataSlicesSlice[]
+function bundleTextImageSlices(
+  slices: Content.VariationOneDocumentDataSlicesSlice[]
 ) {
   const res: (
-    | Content.HomepageDocumentDataSlicesSlice
-    | TextAndImageBundleSlice
+    | Content.VariationOneDocumentDataSlicesSlice
+    | TextImageBundleSlice
   )[] = [];
 
   for (const slice of slices) {
-    if (slice.slice_type !== "text_and_image") {
+    if (slice.slice_type !== "text_image") {
       res.push(slice);
       continue;
     }
 
     const bundle = res.at(-1);
-    if (bundle?.slice_type === "text_and_image_bundle") {
+    if (bundle?.slice_type === "text_image_bundle") {
       bundle.slices.push(slice);
     } else {
       res.push({
         id: `${slice.id}-bundle`,
-        slice_type: "text_and_image_bundle",
+        slice_type: "text_image_bundle",
         slices: [slice],
       });
     }

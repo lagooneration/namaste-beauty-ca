@@ -62,31 +62,31 @@ export async function Addon({ id }: Props) {
               <div className="flex flex-col w-full z-10">
                 <div className="relative flex items-center justify-between w-96 py-3 px-4 rounded-lg bg-brand-pink/60 hover:bg-brand-gray/80 transition-colors duration-200">
                   {service.data.save_offer && discountPercentage && (
-                    <div className="absolute bottom-2 left-20 bg-brand-orange text-brand-pink text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                    <div className="absolute top-1 left-16 bg-brand-orange text-brand-pink text-xs font-bold px-2 py-1 rounded-full animate-pulse">
                       {discountPercentage}% OFF
                     </div>
                   )}
                   <div className="flex items-center gap-3">
-                    <div className="text-brand-purple bg-white/30 backdrop-blur-xl p-2 rounded-lg shadow-sm">
+                    <div className="text-brand-purple bg-white/30 backdrop-blur-xl rounded-lg shadow-sm">
                       <Image 
-                        src="/Group.png" 
+                        src="/icons/icon3.png" 
                         alt={service.data.name || "Service"} 
-                        width={42} 
-                        height={42}
+                        width={52} 
+                        height={52}
                         className="object-contain" 
                       />
                     </div>
                     <div>
-                      <p className="text-brand-purple font-hussar text-sm sm:text-base truncate max-w-[150px] sm:max-w-[200px]">
+                      <p className="text-brand-purple font-hussar text-sm mt-4 sm:text-base truncate max-w-[150px] sm:max-w-[200px]">
                         {service.data.name}
                       </p>
                     </div>
                   </div>
-                  <div className="text-brand-purple hover:text-purple-500 font-hussar text-sm sm:text-base font-medium bg-brand-gray/40 py-1.5 px-3 rounded-md transition-colors">
+                  <div className="text-brand-purple mt-2 hover:text-purple-500 font-hussar text-sm sm:text-base font-medium bg-brand-gray/40 py-1.5 px-3 rounded-md transition-colors">
                     {service.data.save_offer && discountedPrice ? (
                       <div className="flex flex-col items-end gap-0.5">
                         <span className="text-xs line-through opacity-70">{originalPrice}</span>
-                        <span className="absolute top-1 right-8 text-amber-200 font-bold">{discountedPrice}</span>
+                        <span className="absolute top-1 right-8 text-pink-400 font-bold">{discountedPrice}</span>
                       </div>
                     ) : (
                       originalPrice

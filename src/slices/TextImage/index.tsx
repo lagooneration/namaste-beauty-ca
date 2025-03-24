@@ -12,6 +12,8 @@ import { Heading } from "@/components/Heading";
 import { SlideIn } from "@/components/SlideIn";
 import { ParallaxImage } from "@/slices/TextImage/ParallaxImage";
 import { Addon } from "@/slices/TextAndImage/Addon";
+import { Docking } from "../TextAndImage/Docking";
+import { Scards } from "./Scards";
 
 declare module "react" {
   interface CSSProperties {
@@ -40,13 +42,18 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={clsx(
         "sticky top-[calc(var(--index)*2rem)]",
-        theme === "Dark Pink" && "bg-brand-block-one text-white bg-[url('/images/makeup-1.png')] bg-cover bg-center bg-no-repeat",
+        theme === "Dark Pink" && "bg-brand-block-one text-white",
         theme === "Dark Amber" && " bg-brand-block-two text-white",
         theme === "Light Pink" && "bg-brand-block-three text-white",
-        theme === "Light Amber" && "bg-brand-block-four text-white"
-
+        theme === "Light Amber" && "bg-brand-block-four text-white",
+        slice.primary.section_image && "bg-cover bg-center bg-no-repeat"
       )}
-      style={{ "--index": index }}
+      style={{ 
+        "--index": index,
+        ...(slice.primary.section_image && {
+          backgroundImage: `url(${slice.primary.section_image.url})`
+        })
+      }}
     >
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
         <div
@@ -73,22 +80,24 @@ const TextImage = ({ slice, index }: TextImageProps): JSX.Element => {
               {slice.primary.body}
             </div>
           </SlideIn>
-          <SlideIn>    
-          {slice.primary.options.map(
+          {/* <SlideIn>    
+            </SlideIn> */}
+            {slice.primary.options.map(
             ({ services }) =>
               isFilled.contentRelationship(services) && (
-                <Addon key={services.id} id={services.id} />
+                <Scards key={services.id} id={services.id} />
               )
             )}
-          </SlideIn>
           
           <SlideIn>
+            <div className="flex w-[500px] justify-center">
             <ButtonLink
               field={slice.primary.button}
               color={theme === "Dark Pink" ? "logo" : "purple"}
-            >
+              >
               {slice.primary.button.text}
             </ButtonLink>
+              </div>
           </SlideIn>
         </div>
         <div className="w-full">

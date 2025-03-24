@@ -19,6 +19,21 @@
           "label": "UID"
         }
       },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": ""
+        }
+      },
+      "icon": {
+        "type": "Image",
+        "config": {
+          "label": "Icon",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
       "image": {
         "type": "Image",
         "config": {
@@ -50,6 +65,14 @@
           "select": "document",
           "repeat": false,
           "customtypes": ["discount"]
+        }
+      },
+      "background_image": {
+        "type": "Image",
+        "config": {
+          "label": "Background Image",
+          "constraint": {},
+          "thumbnails": []
         }
       }
     }

@@ -28,7 +28,7 @@ export async function Header() {
           </ul>
         </nav>
         <div className="justify-self-end">
-          <ButtonLink href="" icon="whatsapp" color="lime" aria-label="WhatsApp">
+          <ButtonLink href="https://www.fresha.com/a/namaste-beauty-maple-ridge-330-22709-lougheed-highway-ipll3c3v/all-offer?menu=true&pId=860852" target="_blank" icon="whatsapp" color="logo" aria-label="WhatsApp">
           </ButtonLink>
         </div>
       </div>

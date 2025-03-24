@@ -5,25 +5,24 @@ import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/re
 import { Bounded } from "@/components/Bounded";
 import { Heading } from "@/components/Heading";
 import { ButtonLink } from "@/components/ButtonLink";
-import { WideLogo } from "./WideLogo";
-import { TallLogo } from "./TallLogo";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import SplitType from "split-type";
 import clsx from "clsx";
-import { InteractiveModel } from "./InteractiveModel";
+import { WideLogo } from "@/slices/Hero/WideLogo";
+import { TallLogo } from "@/slices/Hero/TallLogo";
 
 gsap.registerPlugin(useGSAP);
 
 /**
  * Props for `Hero`.
  */
-export type HeroProps = SliceComponentProps<Content.HeroSlice>;
+export type HeroVariationProps = SliceComponentProps<Content.HeroVariationSlice>;
 
 /**
  * Component for "Hero" Slices.
  */
-const Hero = ({ slice }: HeroProps): JSX.Element => {
+const HeroVariation = ({ slice }: HeroVariationProps): JSX.Element => {
   const container = useRef(null);
 
   useGSAP(() => {
@@ -102,21 +101,13 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
     > 
     <div ref={container} className="hero">
       <div
-        className={clsx(
-          "flex flex-col items-center gap-8 text-center md:items-start md:text-left bg-texture",
-          slice.variation === "otherVariation" && "text-brand-purple "
-        )}
-        >
+        className="flex flex-col items-center gap-8 text-center md:items-start md:text-left bg-texture">
           {/* <div className="absolute inset-0 flex items-center pt-20"> */}
-    <div 
-      className={clsx(
-          "absolute inset-0 flex items-center pt-20",
-          slice.variation === "otherVariation" && "opacity-50"
-        )}
-        >
+    {/* <div 
+      className="absolute inset-0 flex items-center pt-20">
         <WideLogo className="w-full text-brand-purple hidden opacity-20 mix-blend-multiply lg:block" />
         <TallLogo className="w-full text-brand-purple opacity-20 mix-blend-multiply lg:hidden" />
-      </div>
+      </div> */}
 
 
     <div className="absolute inset-0 mx-auto mt-24 grid max-w-6xl grid-rows-[1fr,auto] place-items-end px-6 ~py-10/16">
@@ -140,9 +131,8 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       </div>
       </div>
       </div>
-      <InteractiveModel />
     </Bounded>
   );
 };
 
-export default Hero;
+export default HeroVariation;

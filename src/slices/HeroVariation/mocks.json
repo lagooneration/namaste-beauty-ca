@@ -1,0 +1,40 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Around"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Excepteur commodo ipsum deserunt est sint dolor dolor fugiat sunt qui quis incididunt cillum veniam. Laboris deserunt ipsum eiusmod veniam commodo officia. Nulla incididunt officia eu nulla labore."
+						}
+					}
+				]
+			},
+			"button": {
+				"__TYPE__": "LinkContent",
+				"key": "221b5e2f-14b7-4851-92b3-d3300e1fb285",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io",
+					"text": "by"
+				}
+			}
+		},
+		"items": []
+	}
+]

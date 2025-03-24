@@ -45,11 +45,11 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
       )}
       style={{ "--index": index }}
     >
-      <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24">
+      <div className="grid grid-cols-1 items-center scale-95 gap-12 md:grid-cols-2 md:gap-24">
       <div 
           className={clsx(
             "w-full",
-            slice.variation === "imageOnLeft" && "md:order-1"
+            slice.variation === "imageOnLeft" && "md:order-1 scale-95"
           )}>
           <ParallaxImage
             foregroundImage={slice.primary.foreground_image}

@@ -85,6 +85,14 @@
               }
             }
           }
+        },
+        "section_image": {
+          "type": "Image",
+          "config": {
+            "label": "Section Image",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}
@@ -169,6 +177,14 @@
                 }
               }
             }
+          }
+        },
+        "section_image": {
+          "type": "Image",
+          "config": {
+            "label": "Section Image",
+            "constraint": {},
+            "thumbnails": []
           }
         }
       },

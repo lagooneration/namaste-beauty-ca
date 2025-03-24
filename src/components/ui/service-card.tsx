@@ -22,16 +22,22 @@ const ServiceCard = ({ serviceName, price, discountPercentage }: ServiceCardProp
             <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
           </svg>
         </button> */}
+
+        {/* {discountPercentage && (
+            <div className="Discount font-mono">{discountPercentage}% OFF</div>
+          )} */}
+
+<div className="container">
+          <div className="tooltip">
         {discountPercentage && (
-          <div className="Discount font-mono">{discountPercentage}% OFF</div>
+          <div className="font-mono text-red-400">{discountPercentage}% OFF</div>
         )}
-        {/* <picture className="imageContainer">
-        </picture> */}
-          {/* <p style={{color: '{{color}}'}}>|</p> */}
+        </div>
+          </div>
         <footer className="priceAndButton">
         <p className="foodTitle">{serviceName}</p>
-          
           <button className="button"><p className="Price">${price}</p></button>
+          
         </footer>
       </div>
     </StyledWrapper>
@@ -65,8 +71,8 @@ const StyledWrapper = styled.div`
     font-size: 8px;
     padding: 5px 10px 5px 10px;
     font-weight: 600;
-    color: rgb(255, 50, 50);
-    background-color: rgb(46, 46, 46);
+    color: rgb(239, 168, 212);
+    background-color: rgb(83, 5, 55);
     border-radius: 0px 15px 0px 15px;
     width: auto;
     height: auto;
@@ -74,6 +80,26 @@ const StyledWrapper = styled.div`
     z-index: 10;
     scale: 0.8;
   }
+
+  .tooltip {
+   position: absolute;
+   top: -30px;
+    right: 20px;
+    z-index: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: #333;
+  }
+
+
+  .container {
+    font-size: 18px;
+    color: #333;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+  }
+
 
   .Like {
     border: none;
@@ -169,7 +195,7 @@ const StyledWrapper = styled.div`
     opacity: 100%;
     font-size: 15px;
     padding-top: -8px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
   .button:hover {
@@ -178,6 +204,41 @@ const StyledWrapper = styled.div`
 
   .button:active {
     transform: scale(0.95);
+  }
+    
+  @keyframes goPopup {
+    0% {
+      transform: translateY(0) scaleY(0);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(-50%) scaleY(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%) scaleY(1);
+      border-radius: 8px;
+      opacity: 1;
+      height: 40px;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-3px);
+    }
+    60% {
+      transform: translateY(-2px);
+    }
   }`;
+
+  
 
 export default ServiceCard;
