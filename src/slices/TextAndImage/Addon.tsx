@@ -1,12 +1,8 @@
 import { Content, isFilled } from "@prismicio/client";
 import { createClient } from "@/prismicio";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from '@/components/ui/accordion';
 import ServiceCard from "@/components/ui/service-card";
+
+
 type Props = {
   id: string;
 };
@@ -26,23 +22,19 @@ export async function Addon({ id }: Props) {
   }
 
   return (
-    <Accordion className='flex w-full flex-col divide-y divide-zinc-200 dark:divide-zinc-700 pt-2'>
-      <AccordionItem value={service.data.name || "Service"}>
-        <AccordionTrigger className='w-full py-0.5'>
-        <div className="flex flex-col w-full max-w-[290px] mx-auto z-10 p-2">
-            <ServiceCard
-              serviceName={service.data.name || "Service"}
-              price={price}
-              discountPercentage={discountPercentage || undefined}
-            />
-          </div>
-        </AccordionTrigger>
-        <AccordionContent className="max-w-[290px] mx-auto w-full mb-4">
-          <p className='font-mono font-extralight text-left ml-4'>
-            {service.data.description}
-          </p>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="w-[320px] py-2">
+      <ServiceCard
+        serviceName={service.data.name || "Service"}
+        price={price}
+        discountPercentage={discountPercentage || undefined}
+        description={service.data.description || ""}
+        icon={service.data.icon}
+      />
+    </div>
   );
 }
+
+
+
+
+

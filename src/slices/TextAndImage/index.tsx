@@ -35,7 +35,7 @@ const TextAndImage = ({ slice, index }: TextAndImageProps): JSX.Element => {
       className={clsx(
         "px-6 ~py-10/16 [.header+&]:pt-44 [.header+&]:md:pt-32 sticky top-[calc(var(--index)*2rem)]",
         theme === "Dark Pink" && "bg-texture bg-brand-logo text-white",
-        theme === "Light Pink" && "bg-texture bg-brand-pink text-white",
+        theme === "Light Pink" && "bg-texture bg-brand-pink text-brand-purple",
       )}
       style={{ "--index": index } as React.CSSProperties}
     >
