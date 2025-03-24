@@ -3,7 +3,6 @@ import { Content, isFilled } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { Scribble } from "./Scribble";
 import clsx from "clsx";
-import { Bounded } from "@/components/Bounded";
 type Props = {
   offer: Content.OffersDocument;
   index: number;
@@ -26,7 +25,7 @@ export function Offer({ offer, index }: Props) {
 
 
   return (
-    <Bounded
+    <div
     style={{ 
       "--index": index
     }}
@@ -74,7 +73,7 @@ export function Offer({ offer, index }: Props) {
       
       
     </div>
-    </Bounded>
+    </div>
 
   );
 }
